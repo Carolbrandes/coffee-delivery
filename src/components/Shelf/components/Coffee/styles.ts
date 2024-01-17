@@ -7,6 +7,7 @@ export const CoffeeCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 
     border-radius: 6px 36px;
     background: ${props => props.theme['base-card']}; 

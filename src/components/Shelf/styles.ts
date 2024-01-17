@@ -11,4 +11,18 @@ export const CoffeeShelf = styled.section`
         color: ${props => props.theme['base-subtitle']};
         padding-bottom: 3.375rem;
     }
+
+
+    & > div{
+        &:first-of-type{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2rem;
+            row-gap: 2.5rem;
+
+            @media screen and (min-width: 1200px) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
 `

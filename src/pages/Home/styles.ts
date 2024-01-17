@@ -10,8 +10,13 @@ export const Introduction = styled.section`
 `
 
 export const Content = styled.div`
-    width: 63%;
-    max-width: 34.375rem;
+    width: 90%;
+
+    @media screen and (min-width: 1200px) {
+        width: 63%;
+        max-width: 34.375rem;
+        
+    }
 
     h1{
         font-size: 3rem;

@@ -1,9 +1,12 @@
 import imageCoffeeIntro from '../../assets/home-intro.png'
 import { Shelf } from '../../components/Shelf'
+import { useMedia } from '../../hooks/useMedia.tsx';
 import { Benefits } from './components/Benefits/index.tsx';
 import * as S from "./styles.ts";
 
 export const Home = () => {
+    const screenSize = useMedia()
+
     return (
 
         <>
@@ -20,7 +23,10 @@ export const Home = () => {
                 </S.Content>
 
 
-                <img src={imageCoffeeIntro} alt="imagem do copo de café com grãos ao redor" />
+                {
+                    screenSize !== 'small' && <img src={imageCoffeeIntro} alt="imagem do copo de café com grãos ao redor" />
+                }
+
             </S.Introduction>
 
             <Shelf />

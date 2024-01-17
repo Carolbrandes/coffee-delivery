@@ -1,9 +1,16 @@
 import * as S from './styles'
 
-export const Flag = () => {
+interface FlagProps {
+    flag: {
+        name: string
+        label: string
+    }
+}
+
+export const Flag = ({ flag: { label } }: FlagProps) => {
     return (
 
-        <S.Flag>Tradicional</S.Flag>
+        <S.Flag>{label}</S.Flag>
 
     )
 }

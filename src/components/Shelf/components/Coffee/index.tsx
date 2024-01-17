@@ -1,23 +1,39 @@
 import * as S from './styles'
-import coffeeExpress from '../../../../assets/Coffee-express.svg'
 import { Flag } from '../Flag'
 import { Quantity } from '../Quantity'
 import { BuyButton } from '../BuyButton'
 
-export const Coffee = () => {
+interface CoffeeProps {
+    coffee: {
+        name: string
+        description: string
+        price: number
+        priceFormatted: string
+        image: string
+        flags: Array<{
+            name: string
+            label: string
+        }>
+    }
+}
+
+export const Coffee = ({ coffee: { name, description, priceFormatted, image, flags } }: CoffeeProps) => {
     return (
         <S.CoffeeCard>
             <S.CoffeeInfo>
-                <img src={coffeeExpress} alt="café expresso na xícara visto de cima" />
+                <img src={image} alt={name} />
 
-                <Flag />
+                {
+                    flags.map((flag) => <Flag key={flag.name} flag={flag} />)
+                }
 
-                <h4>Expresso Tradicional</h4>
-                <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                <h4>{name}</h4>
+                <p>{description}</p>
             </S.CoffeeInfo>
 
             <S.CoffeeActions>
-                <S.Price> <span>R$</span> 9,90</S.Price>
+                <S.Price> {priceFormatted}</S.Price>
 
                 <div>
                     <Quantity />
