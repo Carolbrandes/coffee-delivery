@@ -3,6 +3,7 @@ import { Flag } from '../Flag'
 import { Quantity } from '../Quantity'
 import { BuyButton } from '../BuyButton'
 
+
 interface CoffeeProps {
     coffee: {
         name: string
@@ -14,10 +15,14 @@ interface CoffeeProps {
             name: string
             label: string
         }>
+        quantity: number
     }
 }
 
-export const Coffee = ({ coffee: { name, description, priceFormatted, image, flags } }: CoffeeProps) => {
+export const Coffee = ({ coffee }: CoffeeProps) => {
+    const { name, description, priceFormatted, image, flags, quantity } = coffee
+
+
     return (
         <S.CoffeeCard>
             <S.CoffeeInfo>
@@ -36,8 +41,13 @@ export const Coffee = ({ coffee: { name, description, priceFormatted, image, fla
                 <S.Price> {priceFormatted}</S.Price>
 
                 <div>
-                    <Quantity />
-                    <BuyButton />
+
+                    {
+                        quantity > 0 && <Quantity quantity={quantity} onUpdateQuantity={handleQuantity} />
+                    }
+
+
+                    <BuyButton newItem={{ ...coffee, quantity: 1 }} />
                 </div>
             </S.CoffeeActions>
         </S.CoffeeCard>

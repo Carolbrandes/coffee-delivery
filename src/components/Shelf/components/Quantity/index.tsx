@@ -1,11 +1,17 @@
 import * as S from './styles';
 
-export const Quantity = () => {
+interface QuantityProps {
+    quantity: number
+    onUpdateQuantity: (newQtd: number) => void
+}
+
+export const Quantity = ({ quantity, onUpdateQuantity }: QuantityProps) => {
+
     return (
         <S.Quantity>
-            <button>-</button>
-            <input type="text" value={1} />
-            <button>+</button>
+            <button onClick={() => onUpdateQuantity(1)}>-</button>
+            <input type="text" value={quantity} />
+            <button onClick={() => onUpdateQuantity(1)}>+</button>
         </S.Quantity>
     );
 }
