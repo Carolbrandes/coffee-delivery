@@ -1,23 +1,21 @@
 import * as S from "./styles.ts";
 import buyButton from '../../../../assets/buyButton.svg'
-import { useCart } from "../../../../hooks/useCart.tsx";
+import { useCoffee } from "../../../../hooks/useCoffee.tsx";
 
 interface BuyButtonProps {
-    newItem: CartItem
+    newItem: CoffeeItem
 
 }
 
 export const BuyButton = ({ newItem }: BuyButtonProps) => {
-    const { addNewItemToCart } = useCart()
+    const { addNewItemToCart } = useCoffee()
 
-    function handleClick() {
+    const handleClick = () => addNewItemToCart(newItem)
 
-        addNewItemToCart(newItem)
-    }
 
     return (
         <S.BuyButton title='adicionar no carrinho' onClick={handleClick}>
-            <img src={buyButton} alt="" />
+            <img src={buyButton} alt="carrinho de compras" />
         </S.BuyButton>
     );
 }

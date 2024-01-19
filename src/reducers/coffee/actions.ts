@@ -8,8 +8,7 @@ export enum ActionTypes {
 
 
 
-export function addNewItemAction(newItem: CartItem) {
-    console.log("🚀 ~ addNewItemAction ~ newItem:", newItem)
+export function addNewItemAction(newItem: CoffeeItem) {
     return {
         type: ActionTypes.ADD_NEW_ITEM,
         payload: {

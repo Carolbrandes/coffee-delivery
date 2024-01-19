@@ -4,19 +4,16 @@ import { Quantity } from '../Quantity'
 import { BuyButton } from '../BuyButton'
 
 
-interface CoffeeProps {
-    coffee: {
+interface CoffeInterface extends CoffeeItem {
+    description: string
+    flags: Array<{
         name: string
-        description: string
-        price: number
-        priceFormatted: string
-        image: string
-        flags: Array<{
-            name: string
-            label: string
-        }>
-        quantity: number
-    }
+        label: string
+    }>
+}
+
+interface CoffeeProps {
+    coffee: CoffeInterface
 }
 
 export const Coffee = ({ coffee }: CoffeeProps) => {
@@ -43,7 +40,7 @@ export const Coffee = ({ coffee }: CoffeeProps) => {
                 <div>
 
                     {
-                        quantity > 0 && <Quantity quantity={quantity} onUpdateQuantity={handleQuantity} />
+                        quantity > 0 && <Quantity quantity={quantity} itemName={name} />
                     }
 
 

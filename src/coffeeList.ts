@@ -1,17 +1,17 @@
-import expressoTradicional from '../../assets/expresso-tradicional.svg'
-import expressoAmericano from '../../assets/expresso-americano.svg'
-import expressoCremoso from '../../assets/expresso-cremoso.svg'
-import expressoGelado from '../../assets/expresso-gelado.svg'
-import cafeComLeite from '../../assets/cafe-com-leite.svg'
-import latte from '../../assets/latte.svg'
-import capuccino from '../../assets/capuccino.svg'
-import macchiato from '../../assets/macchiato.svg'
-import mocaccino from '../../assets/mocaccino.svg'
-import chocolateQuente from '../../assets/chocolate-quente.svg'
-import cubano from '../../assets/cubano.svg'
-import havaino from '../../assets/havaiano.svg'
-import arabe from '../../assets/arabe.svg'
-import irlandes from '../../assets/irlandes.svg'
+import expressoTradicional from './assets/expresso-tradicional.svg'
+import expressoAmericano from './assets/expresso-americano.svg'
+import expressoCremoso from './assets/expresso-cremoso.svg'
+import expressoGelado from './assets/expresso-gelado.svg'
+import cafeComLeite from './assets/cafe-com-leite.svg'
+import latte from './assets/latte.svg'
+import capuccino from './assets/capuccino.svg'
+import macchiato from './assets/macchiato.svg'
+import mocaccino from './assets/mocaccino.svg'
+import chocolateQuente from './assets/chocolate-quente.svg'
+import cubano from './assets/cubano.svg'
+import havaino from './assets/havaiano.svg'
+import arabe from './assets/arabe.svg'
+import irlandes from './assets/irlandes.svg'
 
 
 export const coffeelist = [
@@ -26,7 +26,8 @@ export const coffeelist = [
                 label: "Tradicional"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Expresso Americano",
@@ -39,7 +40,8 @@ export const coffeelist = [
                 label: "Tradicional"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Expresso Cremoso",
@@ -52,7 +54,8 @@ export const coffeelist = [
                 label: "Tradicional"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Expresso Gelado",
@@ -69,7 +72,8 @@ export const coffeelist = [
                 label: "Gelado"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
 
 
@@ -89,7 +93,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Latte",
@@ -106,7 +111,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Capuccino",
@@ -123,7 +129,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Macchiato",
@@ -140,7 +147,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
 
 
@@ -160,7 +168,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Chocolate Quente",
@@ -177,7 +186,8 @@ export const coffeelist = [
                 label: "Com leite"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Cubano",
@@ -198,7 +208,8 @@ export const coffeelist = [
                 label: "Gelado"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Havaiano",
@@ -211,7 +222,8 @@ export const coffeelist = [
                 label: "Especial"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
 
 
@@ -226,7 +238,8 @@ export const coffeelist = [
                 label: "Especial"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
     {
         name: "Irlandês",
@@ -243,6 +256,7 @@ export const coffeelist = [
                 label: "alcoólico"
             }
         ],
-        quantity: 0
+        quantity: 0,
+        inCart: false
     },
 ]

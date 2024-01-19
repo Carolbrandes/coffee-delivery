@@ -1,19 +1,12 @@
 import React from 'react'
 import * as S from './styles'
-import { coffeelist } from './coffeeList'
 import { Coffee } from './components/Coffee'
+import { useCoffee } from '../../hooks/useCoffee'
 
 export const Shelf = () => {
 
-
-
-    const coffeeListFormatted = coffeelist.map((coffee) => ({
-        ...coffee, priceFormatted: new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        }).format(coffee.price!)
-    }))
-
+    const { coffeState } = useCoffee()
+    const { items } = coffeState
 
     return (
         <S.CoffeeShelf>
@@ -21,7 +14,7 @@ export const Shelf = () => {
 
             <div>
                 {
-                    coffeeListFormatted.map(coffee => (<Coffee key={coffee.name} coffee={coffee} />))
+                    items.map(coffee => (<Coffee key={coffee.name} coffee={coffee} />))
                 }
             </div>
         </S.CoffeeShelf>

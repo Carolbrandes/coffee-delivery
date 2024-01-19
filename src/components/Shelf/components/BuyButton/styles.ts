@@ -7,6 +7,7 @@ export const BuyButton = styled.button`
 
     width: 2.5rem;
     height: 2.5rem;
+   
 
     img{
         max-width: 100%;
