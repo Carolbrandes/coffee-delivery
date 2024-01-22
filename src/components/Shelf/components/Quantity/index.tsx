@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCoffee } from '../../../../hooks/useCoffee';
 import * as S from './styles';
 
@@ -14,23 +14,27 @@ export const Quantity = ({ quantity, itemName }: QuantityProps) => {
 
     const handleDecrement = () => {
         const newQuantity = Math.max(0, quantity - 1);
+        setInputQtd(newQuantity)
         updateItemQuantity(itemName, newQuantity);
     };
 
     const handleIncrement = () => {
         const newQuantity = quantity + 1;
+        setInputQtd(newQuantity)
         updateItemQuantity(itemName, newQuantity);
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setInputQtd(+value)
 
-        if (/^\d+$/.test(value)) {
-            const newQuantity = parseInt(value, 10);
-            updateItemQuantity(itemName, newQuantity);
-        }
+        // Parse the input value as an integer, defaulting to 0 if it's not a valid positive integer
+        const newInputQtd = /^\d+$/.test(value) ? parseInt(value, 10) : 0;
+
+        setInputQtd(newInputQtd);
+        updateItemQuantity(itemName, newInputQtd);
     };
+
+
 
 
 

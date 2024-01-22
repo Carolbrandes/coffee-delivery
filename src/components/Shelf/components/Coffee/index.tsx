@@ -17,7 +17,7 @@ interface CoffeeProps {
 }
 
 export const Coffee = ({ coffee }: CoffeeProps) => {
-    const { name, description, priceFormatted, image, flags, quantity } = coffee
+    const { name, description, priceFormatted, image, flags, quantity, inCart } = coffee
 
 
     return (
@@ -40,7 +40,7 @@ export const Coffee = ({ coffee }: CoffeeProps) => {
                 <div>
 
                     {
-                        quantity > 0 && <Quantity quantity={quantity} itemName={name} />
+                        inCart && <Quantity quantity={quantity} itemName={name} />
                     }
 
 
