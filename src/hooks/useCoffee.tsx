@@ -7,62 +7,63 @@ interface CoffeeProviderProps {
     children: ReactNode
 }
 
-interface CoffeeContextData {
-    coffeState: {
-        items: CoffeeItem[]
-        cartItems: CoffeeItem[] | []
-        totalValue: number
-    }
-    addNewItemToCart: (newItem: CoffeeItem) => void
-    removeItemToCart: (itemNameToRemove: string) => void
-    updateItemQuantity: (itemName: string, newQuantity: number) => void
 
+
+
+interface CoffeeContextData {
+    coffeState: CoffeeState;
+    addNewItemToCart: (newItem: CoffeeItem) => void;
+    removeItemToCart: (itemNameToRemove: string) => void;
+    updateItemQuantity: (itemName: string, newQuantity: number) => void;
 }
 
-const CoffeeContext = createContext({} as CoffeeContextData)
+const CoffeeContext = createContext({} as CoffeeContextData);
+
+type CoffeeReducer = (state: CoffeeState, action: any) => CoffeeState;
+
 
 export function CoffeeProvider({ children }: CoffeeProviderProps) {
-    const [coffeState, dispatch] = useReducer(coffeeReducer, {
-        items: coffeelist.map((coffee) => ({
-            ...coffee,
-            priceFormatted: new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(coffee.price!)
-        })),
-        cartItems: [],
-        totalValue: 0
-    }, (initialState) => {
-        const storedStateAsJSON = localStorage.getItem('@coffee-delivery:coffee-state-1.0.0')
+    const [coffeState, dispatch] = useReducer<CoffeeReducer, CoffeeState>(
+        coffeeReducer,
+        {
+            items: coffeelist.map((coffee) => ({
+                ...coffee,
+                priceFormatted: new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                }).format(coffee.price!),
+            })),
+            cartItems: [],
+            totalValue: '',
+            totalCartItems: 0
+        },
+        (initialState) => {
+            const storedStateAsJSON = localStorage.getItem('@coffee-delivery:coffee-state-1.0.0');
 
-        if (storedStateAsJSON) {
-            return JSON.parse(storedStateAsJSON)
+            if (storedStateAsJSON) {
+                return JSON.parse(storedStateAsJSON) as CoffeeState;
+            }
+
+            return initialState;
         }
-
-        return initialState
-    })
-
-
+    );
 
     useEffect(() => {
-        const coffeeStateJSON = JSON.stringify(coffeState)
-        localStorage.setItem('@coffee-delivery:coffee-state-1.0.0', coffeeStateJSON)
-        console.log("🚀  ~ coffeeStateJSON:", coffeState)
-    }, [coffeState])
-
-
-
+        const coffeeStateJSON = JSON.stringify(coffeState);
+        localStorage.setItem('@coffee-delivery:coffee-state-1.0.0', coffeeStateJSON);
+        console.log('🚀  ~ coffeeStateJSON:', coffeState);
+    }, [coffeState]);
 
     function addNewItemToCart(newItem: CoffeeItem) {
-        dispatch(addNewItemAction(newItem))
+        dispatch(addNewItemAction(newItem));
     }
 
     function removeItemToCart(itemNameToRemove: string) {
-        dispatch(removeItemAction(itemNameToRemove))
+        dispatch(removeItemAction(itemNameToRemove));
     }
 
     function updateItemQuantity(itemName: string, newQuantity: number) {
-        dispatch(updateItemQuantityAction(itemName, newQuantity))
+        dispatch(updateItemQuantityAction(itemName, newQuantity));
     }
 
     return (
@@ -72,4 +73,4 @@ export function CoffeeProvider({ children }: CoffeeProviderProps) {
     );
 }
 
-export const useCoffee = () => useContext(CoffeeContext)
+export const useCoffee = () => useContext(CoffeeContext);

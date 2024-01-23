@@ -1,39 +1,62 @@
 import { ActionTypes } from "./actions";
 
-interface CoffeeState {
-    items: CoffeeItem[]
-    totalValue: number
-    cartItems: CoffeeItem[] | []
-}
 
+type CoffeeAction =
+    | { type: 'ADD_NEW_ITEM'; payload: { newItem: CoffeeItem } }
+    | { type: 'REMOVE_ITEM'; payload: { itemNameToRemove: string } }
+    | { type: 'UPDATE_ITEM_QUANTITY'; payload: { itemName: string; newQuantity: number } };
 
-export function coffeeReducer(state: CoffeeState, action: any) {
+type CoffeeReducer = (state: CoffeeState, action: CoffeeAction) => CoffeeState;
+
+export const coffeeReducer: CoffeeReducer = (state, action) => {
     switch (action.type) {
         case ActionTypes.ADD_NEW_ITEM: {
             const newItem = { ...action.payload.newItem, inCart: true };
             const updatedItems = state.items.map((item) =>
-                item.name === newItem.name ? { ...item, inCart: true, quantity: item.quantity + newItem.quantity } : item
+                item?.name === newItem.name
+                    ? { ...item, inCart: true, quantity: (item.quantity ?? 0) + newItem.quantity }
+                    : item
             );
 
-            const totalValue = state.totalValue + newItem.price * newItem.quantity;
-            const cartItems = updatedItems.filter((item) => item.inCart);
+            const totalValue =
+                +state.totalValue + (newItem.price ?? 0) * (newItem.quantity ?? 0);
+
+            const formattedTotalValue = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+            }).format(totalValue);
+
+            const cartItems = updatedItems.filter((item) => item?.inCart);
+            console.log("🚀 ~ cartItems ADD_NEW_ITEM:", cartItems)
+            const totalCartItems = cartItems.reduce(
+                (acc, curr) => acc + (curr?.quantity ?? 0),
+                0
+            );
 
             return {
                 ...state,
                 items: updatedItems,
                 cartItems,
-                totalValue,
+                totalValue: formattedTotalValue,
+                totalCartItems,
             };
         }
 
 
+
+        // ActionTypes.REMOVE_ITEM case
         case ActionTypes.REMOVE_ITEM: {
             const itemNameToRemove = action.payload.itemNameToRemove;
-            const itemIndex = state.items.findIndex((item) => item.name === itemNameToRemove);
+            const itemIndex = state.items.findIndex((item) => item?.name === itemNameToRemove);
 
             if (itemIndex !== -1) {
                 const removedItem = state.items[itemIndex];
-                const totalValue = state.totalValue - removedItem.price * removedItem.quantity;
+
+                let totalValue: number | string = +state.totalValue - (removedItem?.price || 0) * (removedItem?.quantity || 0);
+                totalValue = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                }).format(totalValue);
 
                 // Create a new array with the same items, but modify the specified item
                 const updatedItems = state.items.map((item, index) =>
@@ -41,13 +64,18 @@ export function coffeeReducer(state: CoffeeState, action: any) {
                 );
 
                 // Filter cartItems based on inCart property
-                const cartItems = updatedItems.filter(item => item.inCart);
+                const cartItems = updatedItems.filter(item => item?.inCart);
+
+                const totalCartItems = cartItems.length > 0
+                    ? cartItems.reduce((acc, curr) => acc + (curr?.quantity || 0), 0)
+                    : 0;
 
                 return {
                     ...state,
                     items: updatedItems,
                     cartItems,
                     totalValue,
+                    totalCartItems
                 };
             }
 
@@ -57,34 +85,47 @@ export function coffeeReducer(state: CoffeeState, action: any) {
         case ActionTypes.UPDATE_ITEM_QUANTITY: {
             const itemName = action.payload.itemName;
             const newQuantity = action.payload.newQuantity;
-            const itemIndex = state.items.findIndex((item) => item.name === itemName);
 
-            if (itemIndex !== -1) {
-                const oldQuantity = state.items[itemIndex].quantity;
+            if (state.items) {
+                const itemIndex = state.items.findIndex((item) => item?.name === itemName);
 
-                // Set inCart to false if the new quantity is zero
-                const inCart = newQuantity > 0 ? true : false;
+                if (itemIndex !== -1) {
+                    const oldQuantity = state.items[itemIndex]?.quantity ?? 0;
 
-                const updatedItems = state.items.map((item, index) =>
-                    index === itemIndex ? { ...item, quantity: newQuantity, inCart } : item
-                );
+                    // Set inCart to false if the new quantity is zero
+                    const inCart = newQuantity > 0;
 
-                // Filter cartItems based on inCart property and ensure uniqueness by item name
-                const cartItems = Array.from(new Set(updatedItems.filter(item => item.inCart).map(item => item.name)))
-                    .map(name => updatedItems.find(item => item.name === name));
+                    const updatedItems = state.items.map((item, index) =>
+                        index === itemIndex ? { ...item, quantity: newQuantity, inCart } : item
+                    );
 
-                const totalValue = state.totalValue + (newQuantity - oldQuantity) * state.items[itemIndex].price;
+                    // Filter cartItems based on inCart property
+                    const cartItems = updatedItems.filter(item => item?.inCart);
 
-                return {
-                    ...state,
-                    items: updatedItems,
-                    cartItems,
-                    totalValue,
-                };
+                    let totalValue: number | string = +state.totalValue + (newQuantity - oldQuantity) * (state.items[itemIndex]?.price ?? 0);
+                    totalValue = new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                    }).format(totalValue);
+
+                    const totalCartItems = cartItems.length > 0
+                        ? cartItems.reduce((acc, curr) => acc + (curr?.quantity || 0), 0)
+                        : 0;
+
+                    return {
+                        ...state,
+                        items: updatedItems,
+                        cartItems,
+                        totalValue,
+                        totalCartItems
+                    };
+                }
             }
 
             return state;
         }
+
+
 
 
         default:

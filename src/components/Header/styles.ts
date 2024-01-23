@@ -1,10 +1,23 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: ${props => props.theme.background};
+   
+
+    & > div{
+        max-width: 74rem;
+        margin-inline: auto;
+        padding: 2.5rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
 `
 
 export const Info = styled.div`
@@ -22,4 +35,29 @@ export const Location = styled.div`
 
     display: flex;
     align-items: center;
+`
+
+export const Cart = styled.div`
+    background: ${props => props.theme["yellow-light"]};
+    border-radius: 6px; 
+    padding: 8px;
+    position: relative;
+    
+    
+    
+    div{
+        position: absolute;
+        top: -5px;
+        right: -9px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: ${props => props.theme["yellow-dark"]};
+        color: ${props => props.theme.white};
+        font-size: 12px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `
