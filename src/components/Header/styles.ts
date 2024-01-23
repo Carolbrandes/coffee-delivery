@@ -40,21 +40,21 @@ export const Location = styled.div`
 export const Cart = styled.div`
     background: ${props => props.theme["yellow-light"]};
     border-radius: 6px; 
-    padding: 8px;
+    padding: 0.5rem;
     position: relative;
     
     
     
     div{
         position: absolute;
-        top: -5px;
-        right: -9px;
-        width: 20px;
-        height: 20px;
+        top: -0.3125rem;
+        right: -0.5625rem;
+        width: 1.25rem;
+        height: 1.25rem;
         border-radius: 50%;
         background-color: ${props => props.theme["yellow-dark"]};
         color: ${props => props.theme.white};
-        font-size: 12px;
+        font-size: 0.75rem;
 
         display: flex;
         justify-content: center;
