@@ -1,56 +1,44 @@
+import { AdressForm } from "./components/AdressForm";
 import * as S from "./styles";
-import { Input } from "../../components/Input";
+import credit from "../../assets/credit-card-icon.svg";
+import debit from "../../assets/debit-card.svg";
+import money from "../../assets/money.svg";
 
 export const Checkout = () => {
-    return (
-        <S.Container>
+  return (
+    <S.Container>
+      <div>
+        <h1>Complete seu pedido</h1>
+
+        <S.Box>
+          <AdressForm />
+        </S.Box>
+
+        <S.Box>
+          <h2>
+            <img src="" alt="" />
             <div>
-                <h1>Complete seu pedido</h1>
-
-                <S.Box>
-                    <h2>
-                        <img src="" alt="" />
-                        <div>
-                            Endereço de Entrega <br />
-                            <span>Informe o endereço onde deseja receber seu pedido</span>
-                        </div>
-                    </h2>
-
-                    <form>
-                        <div>
-                            <Input placeholder="CEP" type="text" />
-                        </div>
-
-                        <div>
-                            <input placeholder="Rua" type="text" />
-                        </div>
-
-                        <div>
-                            <div>
-                                <input placeholder="Número" type="text" />
-                            </div>
-
-                            <div>
-                                <input placeholder="Complemento" type="text" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <div>
-                                <input placeholder="Bairro" type="text" />
-                            </div>
-
-                            <div>
-                                <input placeholder="Cidade" type="text" />
-                            </div>
-
-                            <div>
-                                <input placeholder="UF" type="text" />
-                            </div>
-                        </div>
-                    </form>
-                </S.Box>
+              Pagamento <br />
+              <span>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </span>
             </div>
-        </S.Container>
-    );
-}
+          </h2>
+
+          <S.PaymentsMethods>
+            <button>
+              <img src={credit} alt="ícone cartão de crédito" /> Cartão de
+              crédito
+            </button>
+            <button>
+              <img src={debit} alt="ícone cartão de débito" /> cartão de débito
+            </button>
+            <button>
+              <img src={money} alt="ícone dinheiro" /> dinheiro
+            </button>
+          </S.PaymentsMethods>
+        </S.Box>
+      </div>
+    </S.Container>
+  );
+};
