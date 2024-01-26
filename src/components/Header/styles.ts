@@ -6,6 +6,7 @@ export const Container = styled.header`
     top: 0;
     left: 0;
     background-color: ${props => props.theme.background};
+    z-index: 1;
    
 
     & > div{

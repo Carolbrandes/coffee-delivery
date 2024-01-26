@@ -2,6 +2,9 @@ import { styled } from "styled-components";
 
 export const Container = styled.section`
     padding: 6.25rem 0 15rem 0;
+    display: grid;
+    grid-template-columns: 2fr 1.65fr;
+    gap: 32px;
 
     h1{
         color: ${props => props.theme["base-subtitle"]};
@@ -27,6 +30,12 @@ export const Container = styled.section`
         }
 
     }
+
+    .containerTotal{
+        & > div{
+            border-radius: 6px 44px;
+        }
+    }
 `
 
 export const Box = styled.div`
@@ -34,18 +43,19 @@ export const Box = styled.div`
     background: ${props => props.theme["base-card"]}; 
 
     display: flex;
-    padding: 2.5rem;
+    padding: 1.5rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
-    align-self: stretch; 
+    margin-bottom: 12px;
 
 `
 
-export const PaymentsMethods = styled.div`
-    display: flex;
-    gap: 12px;
-`
+
+
+
+
+
 
 
 

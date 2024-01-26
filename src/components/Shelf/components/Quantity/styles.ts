@@ -5,6 +5,9 @@ export const Quantity = styled.div`
     padding: 0.5rem;
     border-radius: 0.375rem;
     background: ${props => props.theme['base-button']}; 
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
 
     button, input{
         border: none;
@@ -12,9 +15,7 @@ export const Quantity = styled.div`
         background: inherit;
     }
 
-    button{
-        color: ${props => props.theme.purple};
-    }
+   
 
     input{
         max-width: 1.875rem;

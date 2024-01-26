@@ -1,8 +1,8 @@
 import { AdressForm } from "./components/AdressForm";
+import { CartTotal } from "./components/CartTotal";
+import { PaymentsMethods } from "./components/PaymentsMethods";
+
 import * as S from "./styles";
-import credit from "../../assets/credit-card-icon.svg";
-import debit from "../../assets/debit-card.svg";
-import money from "../../assets/money.svg";
 
 export const Checkout = () => {
   return (
@@ -15,28 +15,15 @@ export const Checkout = () => {
         </S.Box>
 
         <S.Box>
-          <h2>
-            <img src="" alt="" />
-            <div>
-              Pagamento <br />
-              <span>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </span>
-            </div>
-          </h2>
+          <PaymentsMethods />
+        </S.Box>
+      </div>
 
-          <S.PaymentsMethods>
-            <button>
-              <img src={credit} alt="ícone cartão de crédito" /> Cartão de
-              crédito
-            </button>
-            <button>
-              <img src={debit} alt="ícone cartão de débito" /> cartão de débito
-            </button>
-            <button>
-              <img src={money} alt="ícone dinheiro" /> dinheiro
-            </button>
-          </S.PaymentsMethods>
+      <div className="containerTotal">
+        <h1>Cafés selecionados</h1>
+
+        <S.Box>
+          <CartTotal />
         </S.Box>
       </div>
     </S.Container>
