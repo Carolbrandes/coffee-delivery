@@ -1,68 +1,42 @@
 import { styled } from "styled-components";
 
-export const CheckoutItem = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    width: 100%;
-    border-bottom: 1px solid ${props => props.theme["base-button"]};
-    padding: 24px 0 24px 0;
+export const Summary = styled.div`
+    padding-top: 1.5rem;
+    color: ${props => props.theme["base-text"]};
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; 
 
-    .itemDetails{
+    & > div {
         display: flex;
-        gap: 20px;  
-        
-        .imageContainer{
-            width: 64px;
-            height: 64px;
+        justify-content: space-between;
+        padding-bottom: 0.75rem;
 
-            img{
-                width: 100%;
-            }
-        }
-    }
-
-    .details{
-       
-        p{
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
+        &:nth-child(3){
             color: ${props => props.theme["base-subtitle"]};
-            margin-bottom: 8px;
-        }
-
-        .quantityContainer{
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            button{
-                border-radius: 6px;
-                background: ${props => props.theme["base-button"]};
-                display: flex;
-                height:  2.375rem ;
-                padding: 0px 8px;
-                justify-content: center;
-                align-items: center;
-                gap: 4px;
-                border: none;
-                outline: none;
-
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 160%; 
-                text-transform: uppercase;
-                color: ${props => props.theme["base-text"]}
-            }
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-bottom: 1.5rem ;
         }
     }
 
-    .price{
-        color: ${props => props.theme["base-text"]};
-        text-align: right;
-        font-style: normal;
-        font-weight: 700;
+    .buttonToFinalizateOrder{
+        a{
+            display: block;
+            border-radius: 6px;
+            background: ${props => props.theme.yellow};
+            padding: 0.75rem 0.5rem;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 160%;
+            text-transform: uppercase;
+        }
     }
 `
 

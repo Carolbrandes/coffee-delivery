@@ -28,7 +28,6 @@ export const Quantity = ({ quantity, itemName }: QuantityProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
-    // Parse the input value as an integer, defaulting to 0 if it's not a valid positive integer
     const newInputQtd = /^\d+$/.test(value) ? parseInt(value, 10) : 0;
 
     setInputQtd(newInputQtd);

@@ -2,6 +2,7 @@ import * as S from "./styles";
 import deleteIcon from "../../../../../assets/delete-icon.svg";
 import { useCoffee } from "../../../../../hooks/useCoffee";
 import { Quantity } from "../../../../../components/Shelf/components/Quantity";
+import { formatCurrency } from "../../../../../utils/formatCurrency";
 
 interface CheckoutItemProps {
   item: CoffeeItem;
@@ -9,10 +10,7 @@ interface CheckoutItemProps {
 
 export const CheckoutItem = ({ item }: CheckoutItemProps) => {
   const { removeItemToCart } = useCoffee();
-  const totalItem = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(item.price * item.quantity!);
+  const totalItem = formatCurrency(item.price * item.quantity!);
 
   return (
     <S.CheckoutItem>

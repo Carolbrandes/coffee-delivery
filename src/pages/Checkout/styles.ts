@@ -2,9 +2,14 @@ import { styled } from "styled-components";
 
 export const Container = styled.section`
     padding: 6.25rem 0 15rem 0;
-    display: grid;
-    grid-template-columns: 2fr 1.65fr;
-    gap: 32px;
+    
+    @media screen and (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: 2fr 1.65fr;
+        gap: 2rem;
+               
+    }
+
 
     h1{
         color: ${props => props.theme["base-subtitle"]};
@@ -47,8 +52,34 @@ export const Box = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
 
+`
+
+export const NoItemsContainer = styled.div`
+    padding: 6.25rem 0 15rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    p{
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    
+
+    a{
+        display: block;
+        background: ${props => props.theme["purple-dark"]};
+        color: #fff;
+        padding: 0.8rem;
+        text-decoration: none;
+        border-radius: 6px;
+    }
 `
 
 

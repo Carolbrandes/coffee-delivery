@@ -25,3 +25,22 @@ export const InputContainer_grid3 = styled.div`
     gap: 0.75rem;
  
 `
+
+export const InputInfo = styled.div`
+   
+    position: relative;
+    
+
+    span{
+        position: absolute;
+        right: 1.0625rem;
+        top: 50%;
+        transform: translateY(-50%);
+
+        color: ${props => props.theme["base-label"]};
+        font-size: 0.75rem;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 130%; 
+    }
+`

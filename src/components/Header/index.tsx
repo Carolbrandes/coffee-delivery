@@ -9,7 +9,6 @@ export const Header = () => {
   const {
     coffeState: { totalCartItems },
   } = useCoffee();
-  console.log("🚀 ~ Header ~ totalCartItems:", totalCartItems);
 
   return (
     <S.Container>

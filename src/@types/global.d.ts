@@ -10,9 +10,9 @@ interface CoffeeItem {
 }
 
 interface CoffeeState {
-    items: CoffeeItem[]
+    products: CoffeeItem[]
     cartItems: CoffeeItem[]
-    totalValue: string;
+    totalValue: number;
     totalCartItems: number;
 }
 

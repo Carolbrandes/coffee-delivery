@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { useCoffee } from "../../hooks/useCoffee";
 import { AdressForm } from "./components/AdressForm";
 import { CartTotal } from "./components/CartTotal";
 import { PaymentsMethods } from "./components/PaymentsMethods";
@@ -5,7 +7,11 @@ import { PaymentsMethods } from "./components/PaymentsMethods";
 import * as S from "./styles";
 
 export const Checkout = () => {
-  return (
+  const {
+    coffeState: { totalCartItems },
+  } = useCoffee();
+
+  return totalCartItems > 0 ? (
     <S.Container>
       <div>
         <h1>Complete seu pedido</h1>
@@ -27,5 +33,10 @@ export const Checkout = () => {
         </S.Box>
       </div>
     </S.Container>
+  ) : (
+    <S.NoItemsContainer>
+      <p>Você não possui itens no carrinho =(</p>
+      <Link to="/">Voltar para página inicial</Link>
+    </S.NoItemsContainer>
   );
 };
